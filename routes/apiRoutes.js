@@ -26,9 +26,7 @@ const users = [
   ];
   let contador = 4;
 
-router.get("/users", function(req, res){
-    res.json(users);
-});
+
 router.get("/users/:id", (req, res) => {
     // 0) Recupero el parametro id
     const userId = parseInt(req.params.id);
@@ -44,10 +42,11 @@ router.get("/users/:id", (req, res) => {
 
 router.get('/users', function(req, res){
     let search = req.query.search;
-    search = search.toLowerCase();
+ 
   
     // chequea si search esta definido y su longitud
     if (search && search.length > 0){
+        search = search.toLowerCase();
     // otra forma posible
     // if (typeof search !== 'undefined' && search.length > 0)
     // creo la lista filtrada
@@ -56,7 +55,7 @@ router.get('/users', function(req, res){
            const nombre = users[i].nombre.toLowerCase();
            const apellido = users[i].apellido.toLowerCase();
            const telefono = users[i].telefono.toLowerCase();
-           const mail = users[i].mail.toLowerCase();
+           const mail = users[i].email.toLowerCase();
        if (nombre.indexOf(search)>=0 || apellido.indexOf(search)>=0 || telefono.indexOf(search)>=0 || mail.indexOf(search)>=0){
            usersFiltrados.push(users[i]);
        }
@@ -65,7 +64,7 @@ router.get('/users', function(req, res){
         return res.json(usersFiltrados)
 
 }
-    
+return res.json(users)
 
 });
 router.delete("/users/:id", function(req, res){
@@ -100,10 +99,27 @@ router.put("/users/:id", (req, res) =>{
    })
 
 
+   
+function validar(user){
+    const validarEmail = /^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+    //  agregar validaciones de servidor
+    // if ....y toma los valores del body y retorna 400
+    if(user.nombre.length >30 ){
+       return false
+     }
+    if(user.apellido.length >30 ){
+        return false;
+    }
+    if(user.telefono.length >30 ){
+        return false;     }
+    if(!validarEmail.test(user.email)){
+        return false;
+    }
+    return true;
+}
 
-
-router.post('/users', function(req, res){
+   router.post('/users', function(req, res){
     //   la info que me llega desde la web es esta:
 //    { nombre: "",
 //     apellido: "",
@@ -111,12 +127,13 @@ router.post('/users', function(req, res){
 //     email: ""}
 
 const newUser = req.body;
+if(!validar(newUser)){
+    return res.status(400).end('algo me pasaste mal')
+}
 newUser.id = contador++
 // agrego el usuario al arrya de users
 users.push(newUser);
 res.json(users);
 });
-
-
 
 module.exports=router
