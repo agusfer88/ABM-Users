@@ -2,7 +2,6 @@ $('#btn-guarda').click(function(){
 const nombre = $('input[name="nombre"]').val();
 const apellido = $('input[name="apellido"]').val();
 const telefono = $('input[name="telefono"]').val();
-console.log(telefono)
 const email = $('input[name="email"]').val();
 
 const validarNumero = /^\d+$/;

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const path = require('path');
 const users = [
+    
     {
       id: 1,
       nombre: "Ada",
@@ -63,8 +64,8 @@ router.get('/users', function(req, res){
         };
         return res.json(usersFiltrados)
 
-}
-return res.json(users)
+    }
+        return res.json(users)
 
 });
 router.delete("/users/:id", function(req, res){

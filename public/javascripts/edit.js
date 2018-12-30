@@ -26,7 +26,8 @@ $('#btn-guardar').click(function () {
     }
     // 
     // 
-    $.ajax(`/api/users/${id}`, {
+    $.ajax(`http://localhost:3002/api/users/${id}`, {
+    // $.ajax(`/api/users/${id}`, {
       method: "PUT",
       data: editUser
     //   success: function () {
@@ -35,7 +36,7 @@ $('#btn-guardar').click(function () {
     //   }
     })
     .done(function(){
-        alert('usuario creado!');
+        alert('usuario modificado!');
         location.href = '/users';
       })
       .fail(function (err) {
