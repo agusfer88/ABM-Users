@@ -4,20 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
+    
     <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
     <title>Edit User</title>
-    <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous"
-  />
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/sketchy/bootstrap.min.css" rel="stylesheet" integrity="sha384-Yr9hLdz4zKsdMcB2IUf0I2Y+KFalEfJez2d0H2rgQoAYjvm/mzbm2egxZ9Gc9kkg" crossorigin="anonymous">
+  <!-- Modals scripst -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+  <script src="/javascripts/modal.js"></script>
+
   </head>
   <body>
     <h1>Edit User</h1>
@@ -30,7 +25,25 @@
     <button type="button" id='btn-guardar'>guardar los cambios</button>
    
   </form>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- <div class="modal">
+  
+      <p>Cambios guardados.</p>
+      <a href="/users/">Volver a users</a>
+    </div> -->
+    <div class="modal"  id="success"> 
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          
+            <button type="button" class="btn btn-outline-success"><a href="/users/">Volver a users</a></button>
+         </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script  src="/javascripts/edit.js"></script>
+
   </body>
 </html>

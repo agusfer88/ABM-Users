@@ -29,18 +29,21 @@ $('#btn-guardar').click(function () {
     $.ajax(`http://localhost:3002/api/users/${id}`, {
     // $.ajax(`/api/users/${id}`, {
       method: "PUT",
-      data: editUser
-    //   success: function () {
-    //     alert('users editados');
-    //     location.href = "/users";
-    //   }
+      data: editUser,
+      success: function() {
+        $("#success p").html("Cambios guardados!");
+        $("#success").modal();
+      },
+      
     })
-    .done(function(){
-        alert('usuario modificado!');
-        location.href = '/users';
-      })
-      .fail(function (err) {
-        alert('salio mal');
-        console.log('salio todo mal: ', err);
-      })
+    // .done(function(){
+    //     // alert('usuario modificado!');
+    //     alert('usuario guardado');
+    //     location.href = '/users';
+    //   })
+      // .fail(function (err) {
+        
+      //   alert('salio mal');
+      //   console.log('salio todo mal: ', err);
+      // })
   });
